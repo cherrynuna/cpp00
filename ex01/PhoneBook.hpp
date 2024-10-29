@@ -3,6 +3,8 @@
 
 # include <iostream>
 # include <iomanip>
+# include <limits>
+# include <cstdio>
 # include "Contact.hpp"
 
 class PhoneBook
@@ -26,6 +28,27 @@ class PhoneBook
 			}
 		};
 
+		void replaceNonPrintableWithSpace(std::string& input) 
+		{
+		    IsNotPrintable isNotPrintable;
+    
+		    for (std::string::iterator it = input.begin(); it != input.end(); ++it) 
+			{
+        		if (isNotPrintable(static_cast<unsigned char>(*it))) 
+            		*it = ' ';  // 출력 불가능한 문자라면 공백으로 대체
+    		}
+		}
+
+		bool isAllDigits(const std::string& input) 
+		{
+			for (std::string::const_iterator it = input.begin(); it != input.end(); ++it) 
+			{
+				if (!std::isdigit(static_cast<unsigned char>(*it)))
+            		return false;
+		    }
+    		return true;
+		}
+
 		void	addContact()
 		{
 			Contact	newContact;
@@ -33,21 +56,21 @@ class PhoneBook
 			
 			std::cout << "Enter name: ";
 			std::getline(std::cin, input);
-			input.erase(std::remove_if(input.begin(), input.end(), IsNotPrintable()), input.end());
+			replaceNonPrintableWithSpace(input);
 			newContact.setName(input);
 			std::cout << "Enter surname: ";
 			std::getline(std::cin, input);
-			input.erase(std::remove_if(input.begin(), input.end(), IsNotPrintable()), input.end());
+			replaceNonPrintableWithSpace(input);
 			newContact.setSurname(input);
 			std::cout << "Enter nickname: ";
 			std::getline(std::cin, input);
-			input.erase(std::remove_if(input.begin(), input.end(), IsNotPrintable()), input.end());
+			replaceNonPrintableWithSpace(input);
 			newContact.setNickname(input);
 			while (1)
 			{
 				std::cout << "Enter phone number: ";
 				std::getline(std::cin, input);
-				if (std::all_of(input.begin(), input.end(), ::isdigit))
+				if (isAllDigits(input))
 					break;
 				else
 					std::cout << "Please enter onlydigits (0-9).\n";
@@ -55,7 +78,7 @@ class PhoneBook
 			newContact.setPhone(input);
 			std::cout << "Enter darkest secret: ";
 			std::getline(std::cin, input);
-			input.erase(std::remove_if(input.begin(), input.end(), IsNotPrintable()), input.end());
+			replaceNonPrintableWithSpace(input);
 			newContact.setSecret(input);
 
 			if (std::cin.eof()){

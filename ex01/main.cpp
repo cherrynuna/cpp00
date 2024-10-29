@@ -54,11 +54,10 @@ int	main(void)
 			return (0);
 		else
 			std::cout<<"Invalid choice."<<std::endl;
-		if (std::cin.eof())
-		{
-			std::clearerr(stdin);
-			std::cin.clear();
-		}
+		if (std::cin.eof()){
+					clearerr(stdin);
+					std::cin.clear();
+				}
 	}
 	return (0);
 }
