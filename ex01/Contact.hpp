@@ -14,18 +14,18 @@ class Contact
 
 	public:
 		// Setter methods
-		void setName(const std::string& newName) { name = newName; }
-		void setSurname(const std::string& newSurname) { surname = newSurname; }
-		void setNickname(const std::string& newNickname) { nickname = newNickname; }
-		void setPhone(const std::string& newPhone) { phone = newPhone; }
-		void setSecret(const std::string& newSecret) { secret = newSecret; }
+		void setName(const std::string& newName);
+		void setSurname(const std::string& newSurname);
+		void setNickname(const std::string& newNickname);
+		void setPhone(const std::string& newPhone);
+		void setSecret(const std::string& newSecret);
 
 		// Getter methods
-		std::string getName() const { return name; }
-		std::string getSurname() const { return surname; }
-		std::string getNickname() const { return nickname; }
-		std::string getPhone() const { return phone; }
-		std::string getSecret() const { return secret; }
+		std::string getName() const;
+		std::string getSurname() const;
+		std::string getNickname() const;
+		std::string getPhone() const;
+		std::string getSecret() const;
 };
 
 #endif
