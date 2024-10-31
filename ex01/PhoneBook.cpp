@@ -8,16 +8,10 @@ int PhoneBook::getCnt() const {
 	return cnt;
 }
 
-// Implementation of IsNotPrintable functor
-bool PhoneBook::IsNotPrintable::operator()(unsigned char c) const {
-	return !std::isprint(c);
-}
-
 // Replace non-printable characters with a space
 void PhoneBook::replaceNonPrintableWithSpace(std::string& input) {
-	IsNotPrintable isNotPrintable;
 	for (std::string::iterator it = input.begin(); it != input.end(); ++it) {
-		if (isNotPrintable(static_cast<unsigned char>(*it))) 
+		if (!std::isprint(static_cast<unsigned char>(*it))) 
 			*it = ' ';
 	}
 }
