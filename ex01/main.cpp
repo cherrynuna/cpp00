@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-void	ShowMenu(void)
+void	showMenu(void)
 {
 	std::cout << "-----Menu-----"<<std::endl;
 	std::cout << "ADD"<<std::endl;
@@ -11,12 +11,11 @@ void	ShowMenu(void)
 int	main(void)
 {
 	std::string	choice;
-	int			num;
 	PhoneBook	phonebook;
 
 	while (1)
 	{
-		ShowMenu();
+		showMenu();
 		std::cout << "choice: ";
 		std::getline(std::cin, choice);
 		std::cout << std::endl;
@@ -25,30 +24,26 @@ int	main(void)
 			phonebook.addContact();
 		else if (choice == "SEARCH" && phonebook.getCnt() > 0)
 		{
-			phonebook.ShowContacts();
+			phonebook.showContacts();
 			while (1)
 			{
 				std::cout << "choice: ";
-				if (std::cin >> num)
+				std::getline(std::cin, choice);
+				if (choice.size() == 1)
 				{
-					if (0 < num && num < 9 && num <= phonebook.getCnt())
+					if ('0' < choice[0] && choice[0] < '9' && choice[0] - 48 <= phonebook.getCnt())
 						break ;
 					else
 						std::cout << "Invalid choice."<<std::endl;
 				}
 				else
-				{
 					std::cout << "Invalid input. Please enter a number." << std::endl;
-					std::cin.clear();  // cin 상태 플래그를 리셋
-					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// 버퍼를 비움
-				}
 				if (std::cin.eof()){
 					clearerr(stdin);
 					std::cin.clear();
 				}
 			}
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			phonebook.ShowInfo(num - 1);
+			phonebook.showInfo(choice[0] - 49);
 		}
 		else if (choice == "EXIT")
 			return (0);

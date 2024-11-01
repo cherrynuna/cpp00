@@ -2,7 +2,7 @@ SRCS	=	megaphone.cpp
 
 OBJS	=	${SRCS:.cpp=.o}
 
-CC		=	clang++ -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CC		=	c++ -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 
 NAME	=	megaphone
 

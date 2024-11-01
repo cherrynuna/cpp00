@@ -71,7 +71,7 @@ void PhoneBook::addContact() {
 }
 
 // Display a truncated version of a string (10 characters)
-std::string PhoneBook::TenChar(const std::string &str) const {
+std::string PhoneBook::tenChar(const std::string &str) const {
 	std::string result = str;
 	if (result.length() > 10)
 		return result.substr(0, 9) + ".";
@@ -79,7 +79,7 @@ std::string PhoneBook::TenChar(const std::string &str) const {
 }
 
 // Display contacts list
-void PhoneBook::ShowContacts() const {
+void PhoneBook::showContacts() const {
 	std::cout << std::setw(10) << "Index" << "|"
 			  << std::setw(10) << "First Name" << "|"
 			  << std::setw(10) << "Last Name" << "|"
@@ -88,14 +88,14 @@ void PhoneBook::ShowContacts() const {
 
 	for (int i = 0; i < 8 && i < cnt; ++i) {
 		std::cout << std::setw(10) << i + 1 << "|"
-				  << std::setw(10) << TenChar(contacts[i].getName()) << "|"
-				  << std::setw(10) << TenChar(contacts[i].getSurname()) << "|"
-				  << std::setw(10) << TenChar(contacts[i].getNickname()) << std::endl;
+				  << std::setw(10) << tenChar(contacts[i].getName()) << "|"
+				  << std::setw(10) << tenChar(contacts[i].getSurname()) << "|"
+				  << std::setw(10) << tenChar(contacts[i].getNickname()) << std::endl;
 	}
 }
 
 // Show detailed info for a specific contact
-void PhoneBook::ShowInfo(int i) const {
+void PhoneBook::showInfo(int i) const {
 	std::cout << std::endl;
 	std::cout << "first name: " << contacts[i].getName() << std::endl;
 	std::cout << "last name: " << contacts[i].getSurname() << std::endl;
